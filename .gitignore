@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+*.swp
+*.ipynb_checkpoints
+
+vids/

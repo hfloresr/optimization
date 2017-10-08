@@ -1,0 +1,7 @@
+name: optenv
+dependencies:
+  - python=3
+  - matplotlib
+  - numpy
+  - scipy
+  - sympy
