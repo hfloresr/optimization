@@ -1,8 +1,9 @@
 name: optenv
 dependencies:
-  - python=3
+  - jupyter
   - matplotlib
   - numpy
+  - python=3
+  - seaborn
   - scipy
   - sympy
-  - jupyter
