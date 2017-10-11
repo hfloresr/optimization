@@ -113,9 +113,23 @@ X_1 &\sim \mathcal{N}(\mu_{1} = -1,\,\sigma_{1} = 1) \\
 X_2 &\sim \mathcal{N}(\mu_{2} = 8,\,\sigma_{2} = 1)
 \end{align*}
 
+Furthermore, we will derive the number of iterations (stopping conditions) needed for the Fibonacci method to provide an accuracy of within $5\%$. We will define $I_0$ to be the initial interval, $I_n$ to be the final interval, and $F_n$ to be the $n^{th}$ Fibonnaci term.
+
+Hence,
+
+\begin{align*}
+\frac{I_n}{2I_0} &\leq \frac{5}{100} \\
+\frac{I_n}{I_0} &\leq \frac{1}{10} \\
+\frac{1}{F_n} &\leq \frac{1}{10} \\
+\end{align*}
+
+Therefore,
+$$F_n &\geq 10$$.
+
+The value $n = 7$ was computed using Binet's formula for the Fibonacci terms. Fifteen random samples were then generated for both functions using the stopping criterion of $n = 7$ iterations. The table of results for both functions are shown in both Table 1 and Table 2.
 
 
-\begin {table}[H]
+\begin {table}[ht]
 \centering
 \caption {Results for $f_{1}(x) = x^2 + 2x$}
 \begin{tabular}{lcccc}
@@ -150,7 +164,7 @@ Std: & 0.351413 & 0.216419 & 0.224 & 0.000056 \\
 \end{table}
 
 
-\begin {table}[H]
+\begin {table}[ht]
 \centering
 \caption {Results for $f_{2}(x) = x^3 - 13x^2 + 36$}
 \begin{tabular}{lcccc}
@@ -183,9 +197,6 @@ Std:  & 0.664623 & 92.297258 & 0.224 & 0.000059\\
 \bottomrule
 \end{tabular}
 \end {table}
-
-
-
 
 
 \end{description}
