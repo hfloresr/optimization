@@ -95,7 +95,7 @@
 
 \begin{align*}
 f_{1}(x) &= x^2 + 2x \\
-f_{2}(x) &= x^3 - 13x^2 + 36
+f_{2}(x) &= x^3 - 3x^2 + 36
 \end{align*}
 
 Prior to optmizing the provided functions, an initial interval for candidate starting points was determined by visually inspecting the graphs of the functions (shown in Figure~\ref{fig:functions}). 
@@ -118,15 +118,15 @@ Furthermore, we will derive the number of iterations (stopping conditions) neede
 Hence,
 
 \begin{align*}
-\frac{I_n}{2I_0} &\leq \frac{5}{100} \\
-\frac{I_n}{I_0} &\leq \frac{1}{10} \\
-\frac{1}{F_n} &\leq \frac{1}{10} \\
+\frac{I_n}{2I_0} &\leq \frac{1}{100} \\
+\frac{I_n}{I_0} &\leq \frac{1}{50} \\
+\frac{1}{F_n} &\leq \frac{1}{50} \\
 \end{align*}
 
 Therefore,
-$$F_n &\geq 10$$.
+$$F_n &\geq 50$$.
 
-The value $n = 7$ was computed using Binet's formula for the Fibonacci terms. Fifteen random samples were then generated for both functions using the stopping criterion of $n = 7$ iterations. The table of results for both functions are shown in both Table 1 and Table 2.
+The value $n = 10$ was computed using Binet's formula for the Fibonacci terms. Fifteen random samples were then generated for both functions using the stopping criterion of $n = 10$ iterations. The table of results for both functions are shown in both Table 1 and Table 2.
 
 
 \begin {table}[ht]
@@ -163,10 +163,23 @@ Std: & 0.351413 & 0.216419 & 0.224 & 0.000056 \\
 \end{tabular}
 \end{table}
 
+Our final optimum for $f_{1}(x)$ is:
+\begin{align*}
+x_{1}^{*} &= -0.947 \pm 0.351 \\
+f_{1}(x_{1}^{*}) &= -0.880 \pm 0.216
+\end{align*}
+Relative distance is:
+\begin{align*}
+x_{true} - x_{1}^{*} &= -1 - (-0.947) \\
+                     &= -0.053 \\
+f_{true} - f_{1}(x_{1}^{*}) &= -1 - -0.880 \\
+&= -0.12
+\end{align*}
+
 
 \begin {table}[ht]
 \centering
-\caption {Results for $f_{2}(x) = x^3 - 13x^2 + 36$}
+\caption {Results for $f_{2}(x) = x^3 - 3x^2 + 36$}
 \begin{tabular}{lcccc}
 \toprule
 {} &      $x^*$ &    $f_{2}(x^*)$ &  function\_calls &  clock\_time \\
@@ -198,6 +211,20 @@ Std:  & 0.664623 & 92.297258 & 0.224 & 0.000059\\
 \end{tabular}
 \end {table}
 
+Our final optimum for $f_{2}(x)$ is:
+
+\begin{align*}
+x_{2}^{*} &= 7.651 \pm 0.665 \\
+f_{2}(x_{2}^{*}) &= 316.684 \pm 92.297
+\end{align*}
+
+Relative distance is:
+\begin{align*}
+x_{true} - x_{2}^{*} &= 2 - 7.650 \\
+                     &= -5.65 \\
+f_{true} - f_{2}(x_{2}^{*}) &= 32 - 316.684 \\
+                            &= -284.684
+\end{align*}
 
 \end{description}
 \end{document}

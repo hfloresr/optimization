@@ -9,3 +9,5 @@ vids/
 *.log
 *.out
 *.synctex.gz
+
+*.zip
