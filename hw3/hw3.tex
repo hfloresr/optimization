@@ -1,0 +1,189 @@
+\documentclass[10pt,onside]{article}
+\usepackage[a4paper,left=3cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+\usepackage{bm}
+\usepackage{upgreek}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+% mathtools for: Aboxed (put box on last equation in align envirenment)
+\usepackage{microtype} %improves the spacing between words and letters
+
+%% COLOR DEFINITIONS
+
+\usepackage[svgnames]{xcolor} % Enabling mixing colors and color's call by 'svgnames'
+
+\definecolor{MyColor1}{rgb}{0.2,0.4,0.6} %mix personal color
+\newcommand{\textb}{\color{Black} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blue}{\color{MyColor1} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blueb}{\color{MyColor1} \usefont{OT1}{lmss}{b}{n}}
+\newcommand{\red}{\color{LightCoral} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\green}{\color{Turquoise} \usefont{OT1}{lmss}{m}{n}}
+
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\diag}{diag}
+
+%% FONTS AND COLORS
+
+%    SECTIONS
+
+\usepackage{titlesec}
+\usepackage{sectsty}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%set section/subsections HEADINGS font and color
+\sectionfont{\color{MyColor1}}  % sets colour of sections
+\subsectionfont{\color{MyColor1}}  % sets colour of sections
+
+%set section enumerator to arabic number (see footnotes markings alternatives)
+\renewcommand\thesection{\arabic{section}.} %define sections numbering
+\renewcommand\thesubsection{\thesection\arabic{subsection}} %subsec.num.
+
+%define new section style
+\newcommand{\mysection}{
+\titleformat{\section} [runin] {\usefont{OT1}{lmss}{b}{n}\color{MyColor1}} 
+{\thesection} {3pt} {} } 
+
+
+%	CAPTIONS
+%\usepackage{caption}
+%\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\captionsetup[figure]{labelfont={color=Turquoise}}
+
+
+%		!!!EQUATION (ARRAY) --> USING ALIGN INSTEAD
+%using amsmath package to redefine eq. numeration (1.1, 1.2, ...) 
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+
+
+
+\makeatletter
+\let\reftagform@=\tagform@
+\def\tagform@#1{\maketag@@@{(\ignorespaces\textcolor{red}{#1}\unskip\@@italiccorr)}}
+\renewcommand{\eqref}[1]{\textup{\reftagform@{\ref{#1}}}}
+\makeatother
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+% For labeling top of page on every page but first one:
+\usepackage{fancyhdr}
+
+% PREPARE TITLE:
+\title{\blue Optimization \\
+\blueb Homework 3}
+\author{Hector G. Flores Rodriguez (Id. 25721714)}
+\date{\today} % You can set the date automatically by replacing "date goes here" with "\today"
+
+\renewcommand{\rmdefault}{phv} % Arial Font
+\renewcommand{\sfdefault}{phv} % Arial Font
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[CO,CE]{{\small{{\bf{Homework 2}} - Optimization - Fall 2017 - Hector G. Flores}}}
+ 
+
+
+\begin{document}
+\maketitle
+
+\section{Problem 1}
+\begin{description}
+\item[1] Results
+
+SciPy's minimize function (https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize) was used to minimize a 10 dimensional RosenBrock function. For the first part of the problem, Nelder-Mead simplex algorithm was used and for the second part of the problem both Nelder-Mead and BFGS algorithm was used with different starting points and different terminating tolerances.
+
+Nelder 1:
+
+\begin{tabular}{lcccc}
+\toprule
+{} &  rel\_error &                                                  x &       y &  y\_diff \\
+\midrule
+&      2.990 &  [-1.171, 1.157, 1.121, 1.112, 1.121, 1.197, 1.... &  25.067 &  25.067 \\
+&     -0.123 &  [0.02, -0.404, 0.681, 0.842, 0.924, 0.97, 0.99... &  66.975 &  66.975 \\
+&      0.775 &  [-0.965, 0.955, 0.902, 0.844, 0.705, 0.898, 1.... &  46.797 &  46.797 \\
+&     -0.201 &  [1.025, 1.016, 0.996, 1.009, 0.977, 0.747, 0.6... &  10.394 &  10.394 \\
+&     -0.632 &  [0.811, 0.664, 0.457, 0.2, 0.049, 0.008, 0.008... &   5.996 &   5.996 \\
+&     -0.704 &  [0.725, 0.517, 0.231, -0.152, 0.034, 0.013, 0.... &  11.796 &  11.796 \\
+&     -0.919 &  [-0.243, 0.051, 0.041, -0.025, 0.015, -0.01, 0... &   9.709 &   9.709 \\
+&     -0.355 &  [-0.978, 0.975, 0.944, 0.835, 0.685, 0.415, 0.... &   8.984 &   8.984 \\
+&      0.408 &  [0.5, 0.24, 0.039, 0.02, 0.004, -0.73, 1.044, ... &  94.037 &  94.037 \\
+&     -0.360 &  [0.576, 0.34, 0.122, 0.045, 0.014, -0.148, 0.0... &  98.303 &  98.303 \\
+\bottomrule
+Avg: & 0.088 &  & 37.806 & 37.806 \\
+Std: & 1.139234 &  & 36.477887 & 36.477887 \\
+\bottomrule
+\end{tabular}
+
+Nelder 2:
+
+\begin{tabular}{lcccc}
+\toprule
+{} &  rel\_error &                                                  x &       y &     y\_diff \\
+\midrule
+&      2.990 &  [-1.171, 1.157, 1.121, 1.112, 1.121, 1.197, 1.... &  25.067 &  25.066801 \\
+&     -0.123 &  [0.02, -0.404, 0.681, 0.842, 0.924, 0.97, 0.99... &  66.975 &  66.975452 \\
+&      0.775 &  [-0.965, 0.955, 0.902, 0.844, 0.705, 0.898, 1.... &  46.797 &  46.797200 \\
+&     -0.201 &  [1.025, 1.016, 0.996, 1.009, 0.977, 0.747, 0.6... &  10.394 &  10.394475 \\
+&     -0.632 &  [0.811, 0.664, 0.457, 0.2, 0.049, 0.008, 0.008... &   5.996 &   5.995642 \\
+&     -0.704 &  [0.725, 0.517, 0.231, -0.152, 0.034, 0.013, 0.... &  11.796 &  11.795859 \\
+&     -0.919 &  [-0.243, 0.051, 0.041, -0.025, 0.015, -0.01, 0... &   9.709 &   9.708681 \\
+&     -0.355 &  [-0.978, 0.975, 0.944, 0.835, 0.685, 0.415, 0.... &   8.984 &   8.984113 \\
+&      0.408 &  [0.5, 0.24, 0.039, 0.02, 0.004, -0.73, 1.044, ... &  94.037 &  94.037039 \\
+&     -0.360 &  [0.576, 0.34, 0.122, 0.045, 0.014, -0.148, 0.0... &  98.303 &  98.303444 \\
+\bottomrule
+Avg: & 0.087900 &  & 37.805800 & 37.805871 \\
+Std: & 1.139234 &  & 36.477887 & 36.478053 \\
+\bottomrule
+\end{tabular}
+
+BFGS 1:
+
+\begin{tabular}{lcccc}
+\toprule
+{} &  rel\_error &                                                  x &      y &  y\_diff \\
+\midrule
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+\bottomrule
+Avg: & -0.002400 &  & 2.392200 &  2.392200\\
+Std: & 0.002066 &  & 2.058878 & 2.058878 \\
+\bottomrule
+\end{tabular}
+
+BFGS 2:
+
+\begin{tabular}{lcccc}
+\toprule
+{} &  rel\_error &                                                  x &      y &  y\_diff \\
+\midrule
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+&     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
+&     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
+\bottomrule
+Avg: & -0.002400 &  & 2.392200 & 2.392200 \\
+Std: & 0.002066 &  & 2.058878 & 2.058878 \\
+\bottomrule
+\end{tabular}
+
+
+
+\end{description}
+\end{document}
