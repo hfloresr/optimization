@@ -7,6 +7,7 @@
 \usepackage{upgreek}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{amsmath}
 
 \usepackage{amsmath}
 % mathtools for: Aboxed (put box on last equation in align envirenment)
@@ -75,7 +76,7 @@
 \title{\blue Optimization \\
 \blueb Homework 3}
 \author{Hector G. Flores Rodriguez (Id. 25721714)}
-\date{\today} % You can set the date automatically by replacing "date goes here" with "\today"
+\date{October 30, 2017} % You can set the date automatically by replacing "date goes here" with "\today"
 
 \renewcommand{\rmdefault}{phv} % Arial Font
 \renewcommand{\sfdefault}{phv} % Arial Font
@@ -91,15 +92,16 @@
 
 \section{Problem 1}
 \begin{description}
-\item[1] Results
+\item[Results]:
 
-SciPy's minimize function (https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize) was used to minimize a 10 dimensional RosenBrock function. For the first part of the problem, Nelder-Mead simplex algorithm was used and for the second part of the problem both Nelder-Mead and BFGS algorithm was used with different starting points and different terminating tolerances.
+SciPy's minimize function (https://docs.scipy.org) was used to minimize a 10 dimensional RosenBrock function. Ten samples were drawn from a normal distribution with $\mu=1$ and $\sigma=2$. For the first part of the problem, Nelder-Mead simplex algorithm was used and for the second part of the problem both Nelder-Mead and BFGS algorithm was used with different starting points and different terminating tolerances.
 
-Nelder 1:
-
+\begin{table}[ht]
+\centering
+\caption{Results for Nelder-Mead with tolerance at 1e-8}
 \begin{tabular}{lcccc}
 \toprule
-{} &  rel\_error &                                                  x &       y &  y\_diff \\
+{} &  rel\_error &  $\mathbf{x}$ &       y &  y\_diff \\
 \midrule
 &      2.990 &  [-1.171, 1.157, 1.121, 1.112, 1.121, 1.197, 1.... &  25.067 &  25.067 \\
 &     -0.123 &  [0.02, -0.404, 0.681, 0.842, 0.924, 0.97, 0.99... &  66.975 &  66.975 \\
@@ -113,15 +115,24 @@ Nelder 1:
 &     -0.360 &  [0.576, 0.34, 0.122, 0.045, 0.014, -0.148, 0.0... &  98.303 &  98.303 \\
 \bottomrule
 Avg: & 0.088 &  & 37.806 & 37.806 \\
-Std: & 1.139234 &  & 36.477887 & 36.477887 \\
+Std: & 1.139 &  & 36.478 & 36.478 \\
 \bottomrule
 \end{tabular}
+\end{table}
 
-Nelder 2:
+Final results for Nelder-Mead with tolerance at 1e-8:\\
+$$\text{Relative error: } 0.088 \pm 1.139$$
+$$\text{y: } 37.806 \pm 36.478$$
+$$\text{difference: } 37.806 \pm 36.478$$
 
+\pagebreak
+
+\begin{table}[h]
+\centering
+\caption{Results for Nelder-Mead with tolerance at 1e-16}
 \begin{tabular}{lcccc}
 \toprule
-{} &  rel\_error &                                                  x &       y &     y\_diff \\
+{} &  rel\_error &  $\mathbf{x}$ &       y &     y\_diff \\
 \midrule
 &      2.990 &  [-1.171, 1.157, 1.121, 1.112, 1.121, 1.197, 1.... &  25.067 &  25.066801 \\
 &     -0.123 &  [0.02, -0.404, 0.681, 0.842, 0.924, 0.97, 0.99... &  66.975 &  66.975452 \\
@@ -134,16 +145,24 @@ Nelder 2:
 &      0.408 &  [0.5, 0.24, 0.039, 0.02, 0.004, -0.73, 1.044, ... &  94.037 &  94.037039 \\
 &     -0.360 &  [0.576, 0.34, 0.122, 0.045, 0.014, -0.148, 0.0... &  98.303 &  98.303444 \\
 \bottomrule
-Avg: & 0.087900 &  & 37.805800 & 37.805871 \\
-Std: & 1.139234 &  & 36.477887 & 36.478053 \\
+Avg: & 0.088 &  & 37.806 & 37.806 \\
+Std: & 1.139 &  & 36.478 & 36.478 \\
 \bottomrule
 \end{tabular}
+\end{table}
 
-BFGS 1:
+Final results for Nelder-Mead with tolerance at 1e-16:\\
+$$\text{Relative error: } 0.088 \pm 1.139$$
+$$\text{y: } 37.806 \pm 36.478$$
+$$\text{difference: } 37.806 \pm 36.478$$
 
+
+\begin{table}[ht]
+\centering
+\caption{Results for BFGS with tolerance at 1e-8}
 \begin{tabular}{lcccc}
 \toprule
-{} &  rel\_error &                                                  x &      y &  y\_diff \\
+{} &  rel\_error &  $\mathbf{x}$ &      y &  y\_diff \\
 \midrule
 &     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
 &     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
@@ -156,16 +175,25 @@ BFGS 1:
 &     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
 &     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
 \bottomrule
-Avg: & -0.002400 &  & 2.392200 &  2.392200\\
-Std: & 0.002066 &  & 2.058878 & 2.058878 \\
+Avg: & -0.002 &  & 2.392 &  2.392\\
+Std: & 0.002 &  & 2.059 & 2.059 \\
 \bottomrule
 \end{tabular}
+\end{table}
 
-BFGS 2:
+Final results for BFGS with tolerance at 1e-8:\\
+$$\text{Relative error: } -0.002 \pm 0.002$$
+$$\text{y: } 2.392 \pm 2.059$$
+$$\text{difference: } 2.392 \pm 2.059$$
 
+\pagebreak
+
+\begin{table}[ht]
+\centering
+\caption{Results for BFGS with tolerance at 1e-16}
 \begin{tabular}{lcccc}
 \toprule
-{} &  rel\_error &                                                  x &      y &  y\_diff \\
+{} &  rel\_error & $\mathbf{x}$ &      y &  y\_diff \\
 \midrule
 &     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
 &     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
@@ -178,11 +206,21 @@ BFGS 2:
 &     -0.000 &  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, ... &  0.000 &   0.000 \\
 &     -0.004 &  [-0.993, 0.997, 0.998, 0.999, 0.999, 0.999, 0.... &  3.987 &   3.987 \\
 \bottomrule
-Avg: & -0.002400 &  & 2.392200 & 2.392200 \\
-Std: & 0.002066 &  & 2.058878 & 2.058878 \\
+Avg: & -0.002 &  & 2.392 & 2.392 \\
+Std: & 0.002 &  & 2.059 & 2.059 \\
 \bottomrule
 \end{tabular}
+\end{table}
 
+Final results for BFGS with tolerance at 1e-16:\\
+$$\text{Relative error: } -0.002 \pm 0.002$$
+$$\text{y: } 2.392 \pm 2.059$$
+$$\text{difference: } 2.392 \pm 2.059$$
+
+
+\item[Discussion]:
+
+The varying parameters did not affect the final solution. For Nelder-Mead, this is probably because it does not generalize well to higher dimension such as N=10 for the Rosenbrock function. For BFGS, there was more likely loss of precision from the approximate Hessian. Overall, the BFGS performed well in comparison to Nelder-Mead, this is most likely due to using first order derivative information.
 
 
 \end{description}
