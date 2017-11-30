@@ -10,6 +10,7 @@ vids/
 *.out
 *.synctex.gz
 
+data/
 *.zip
-
 *.pdf
+*.csv
